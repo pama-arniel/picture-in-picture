@@ -6,11 +6,11 @@ async function selectMediaStream() {
   try {
     const mediaStream = await navigator.mediaDevices.getDisplayMedia();
     videoElement.srcObject = mediaStream;
-    videoElement.onloadedmetadata = () => {
+    videoElement.onloadedmetadata = async () => {
       videoElement.play();
 
       // Start picture in picture
-      videoElement.requestPictureInPicture();
+      await videoElement.requestPictureInPicture();
     };
   } catch (error) {
     // Catch error here
