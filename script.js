@@ -8,6 +8,9 @@ async function selectMediaStream() {
     videoElement.srcObject = mediaStream;
     videoElement.onloadedmetadata = () => {
       videoElement.play();
+
+      // Start picture in picture
+      videoElement.requestPictureInPicture();
     };
   } catch (error) {
     // Catch error here
@@ -20,12 +23,9 @@ button.addEventListener("click", async () => {
   // Disable button
   button.disabled = true;
 
-  // Start picture in picture
-  await videoElement.requestPictureInPicture();
+  // Select media stream
+  await selectMediaStream();
 
   // Reset button
   button.disabled = false;
 });
-
-// On Load
-selectMediaStream();
